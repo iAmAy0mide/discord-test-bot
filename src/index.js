@@ -25,7 +25,7 @@ for (const c of commandFolderContent) {
         const command = require(commandFilesPath);
 
         if ('data' in command && 'execute' in command) {
-            client.commands.set(command.data.commandName, command);
+            client.commands.set(command.data.name, command);
         } else {
             return console.error('Missing data or execute property on command.');
         }
@@ -46,4 +46,4 @@ for (const events of eventsFolder) {
     }
 }
 
-client.login(token)
+client.login(token);
