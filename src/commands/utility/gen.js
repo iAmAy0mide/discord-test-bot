@@ -38,7 +38,6 @@ async function genImage(prompt) {
 
     try {
         const response = await axios.request(options);
-        console.log(response.data.url);
         return response.data.url
     } catch (error) {
         console.error(error);
