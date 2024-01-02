@@ -11,6 +11,8 @@ const { token } = process.env;
 
 const app = express();
 
+const PORT = 9000
+
 const client = new Client({
     intents: [ GatewayIntentBits.Guilds ]
 });
@@ -56,6 +58,6 @@ app.get('/', (req, res) => {
     res.send('Here is your image.')
 });
 
-app.listen(9000, () => {
+app.listen(PORT, () => {
     console.log('Listening on port 9000...');
 });
