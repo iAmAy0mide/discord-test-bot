@@ -13,60 +13,60 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply({ ephemeral: true });
         const {value: prompt} = interaction.options?.get('prompt');
-        const generatedImage = await genImage(prompt);
-        // const generatedImage = await generateImage(prompt);
-        // console.log(generateImage);
+        const generatedImage = await generateImage(prompt);
         await interaction.editReply(generatedImage);
     }
 };
 
-async function genImage(prompt) {
+async function generateImage(prompt) {
 
-    
     const options = {
-        method: 'GET',
-        url: 'https://text2image6.p.rapidapi.com/text2image',
-        params: {
-    text: prompt,
-    style: 'enhance'
-    },
+    method: 'POST',
+    url: 'https://animimagine-ai.p.rapidapi.com/generateImage',
     headers: {
+        'content-type': 'application/json',
+        'Content-Type': 'application/json',
         'X-RapidAPI-Key': '1e00f12f73mshae57abf9cbc02c0p11baa5jsn3d19fffb8805',
-        'X-RapidAPI-Host': 'text2image6.p.rapidapi.com'
+        'X-RapidAPI-Host': 'animimagine-ai.p.rapidapi.com'
+    },
+    data: {
+        selected_model_id: 'anything-v5',
+        selected_model_bsize: '512',
+        prompt,
     }
     };
 
     try {
         const response = await axios.request(options);
-        return response.data.url
+        console.log(response.data.message);
+        return response.data.imageUrl;
     } catch (error) {
         console.error(error);
         return 'Whoops! An error occur. Please try again.'
     }
 }
 
-// async function generateImage(prompt) {
+// async function genImage(prompt) {
+
     
 //     const options = {
 //         method: 'GET',
-//         url: 'https://text-to-image7.p.rapidapi.com/',
+//         url: 'https://text2image6.p.rapidapi.com/text2image',
 //         params: {
-//     prompt,
-//     batch_size: '1',
+//     text: prompt,
+//     style: 'enhance'
 //     },
 //     headers: {
 //         'X-RapidAPI-Key': '1e00f12f73mshae57abf9cbc02c0p11baa5jsn3d19fffb8805',
-//         'X-RapidAPI-Host': 'text-to-image7.p.rapidapi.com'
-//         }
+//         'X-RapidAPI-Host': 'text2image6.p.rapidapi.com'
+//     }
 //     };
 
 //     try {
 //         const response = await axios.request(options);
-//         const prompt = response.data.data[0];
-//         // console.log(prompt);
-//         return prompt
+//         return response.data.url
 //     } catch (error) {
 //         console.error(error);
-//         return 'Please enter a valid text to generate image.'
+//         return 'Whoops! An error occur. Please try again.'
 //     }
 // }
