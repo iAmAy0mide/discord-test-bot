@@ -46,28 +46,28 @@ async function genImage(prompt) {
     }
 }
 
-async function generateImage(prompt) {
+// async function generateImage(prompt) {
     
-    const options = {
-        method: 'GET',
-        url: 'https://text-to-image7.p.rapidapi.com/',
-        params: {
-    prompt,
-    batch_size: '1',
-    },
-    headers: {
-        'X-RapidAPI-Key': '1e00f12f73mshae57abf9cbc02c0p11baa5jsn3d19fffb8805',
-        'X-RapidAPI-Host': 'text-to-image7.p.rapidapi.com'
-        }
-    };
+//     const options = {
+//         method: 'GET',
+//         url: 'https://text-to-image7.p.rapidapi.com/',
+//         params: {
+//     prompt,
+//     batch_size: '1',
+//     },
+//     headers: {
+//         'X-RapidAPI-Key': '1e00f12f73mshae57abf9cbc02c0p11baa5jsn3d19fffb8805',
+//         'X-RapidAPI-Host': 'text-to-image7.p.rapidapi.com'
+//         }
+//     };
 
-    try {
-        const response = await axios.request(options);
-        const prompt = response.data.data[0];
-        // console.log(prompt);
-        return prompt
-    } catch (error) {
-        console.error(error);
-        return 'Please enter a valid text to generate image.'
-    }
-}
+//     try {
+//         const response = await axios.request(options);
+//         const prompt = response.data.data[0];
+//         // console.log(prompt);
+//         return prompt
+//     } catch (error) {
+//         console.error(error);
+//         return 'Please enter a valid text to generate image.'
+//     }
+// }
