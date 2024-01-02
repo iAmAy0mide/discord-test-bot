@@ -1,11 +1,15 @@
 const fs = require('fs');
 const path = require('path');
+const express = require('express');
 const {
     Client,
     GatewayIntentBits,
     Collection,
 } = require('discord.js');
-const { token } = require('./config.json')
+require('dotenv').config();
+const { token } = process.env;
+
+const app = express();
 
 const client = new Client({
     intents: [ GatewayIntentBits.Guilds ]
@@ -47,3 +51,11 @@ for (const events of eventsFolder) {
 }
 
 client.login(token);
+
+app.get('/', (req, res) => {
+    res.send('Here is your image.')
+});
+
+app.listen(9000, () => {
+    console.log('Listening on port 9000...');
+});
