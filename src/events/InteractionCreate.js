@@ -4,13 +4,14 @@ module.exports = {
     name: Events.InteractionCreate,
     async execute (interaction) {
         if (!interaction.isChatInputCommand()) {
-            interaction.followUp("Type '/gen' to generate image.");
+            interaction.followUp("Please use the '/gen' to generate image.");
             return;
         };
 
         const command = await interaction.client.commands.get(interaction.commandName);
         
         if (!command) {
+            interaction.followUp("Please use the '/gen' to generate image.");
             return console.log(`No matching ${interaction.commandName} was found.`);
         }
 
