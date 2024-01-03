@@ -3,7 +3,10 @@ const { Events } = require("discord.js");
 module.exports = {
     name: Events.InteractionCreate,
     async execute (interaction) {
-        if (!interaction.isChatInputCommand()) return;
+        if (!interaction.isChatInputCommand()) {
+            interaction.followUp("Type '/gen' to generate image.");
+            return;
+        };
 
         const command = await interaction.client.commands.get(interaction.commandName);
         
