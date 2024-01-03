@@ -11,7 +11,7 @@ module.exports = {
                 .setRequired(true)),
 
     async execute(interaction) {
-        await interaction.deferReply({ ephemeral: true });
+        await interaction.deferReply();
         const {value: prompt} = interaction.options?.get('prompt');
         const generatedImage = await generateImage(prompt);
         await interaction.editReply(generatedImage);
